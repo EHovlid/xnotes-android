@@ -1708,7 +1708,12 @@ class InfiniteEditor(context: Context) : ToolPopupHost, SelectionMenuHost, LongP
         val h = ih * scale
         val centre = atContent ?: viewport.centerContent
         val rect = Rect(centre.x - w / 2.0, centre.y - h / 2.0, w, h)
-        commitItem(ImageItem(ImageData(file, size.width, size.height), rect, orientation = turn))
+        val item = ImageItem(ImageData(file, size.width, size.height), rect, orientation = turn)
+        commitItem(item)
+        selection.select(listOf(item))
+        armTool(Tool.SELECT)
+        refresh()
+        publishOverlay()
         return true
     }
 

@@ -2472,6 +2472,7 @@ class Editor(context: Context, val pane: Pane = Pane.PRIMARY) : ToolPopupHost, S
         history.push(AddItem(page, item))
         state.document.dirty = true
         refreshContent()
+        controller.selectPlaced(index, listOf(item))
         view.requestRender()
     }
 
